@@ -39,5 +39,30 @@ namespace xYohttp_dotnet.Common.Constant
 
 
 
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 启动个人微信
+        /// </summary>
+        public const string StartWeChat = "StartWeChat";
+        /// <summary>
+        /// 关闭已启动的个人扫码登录窗口
+        /// </summary>
+        public const string ExitWeChatLoginWin = "ExitWeChatLoginWin ";
+
+
+
+
+
+
+
     }
 }

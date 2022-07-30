@@ -17,6 +17,7 @@ namespace xYohttp_dotnet.Domain.Model.Vo
         /// </summary>
         public string? Result { set; get; }
         public T? ReturnJson { set; get; }
+        public string? ReturnStr { set; get; }
         /// <summary>
         /// 是否调用成功
         /// </summary>
