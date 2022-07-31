@@ -87,7 +87,7 @@ namespace xYohttp_dotnet.Http
             return await PostAsync<dynamic>(body);
         }
         /// <summary>
-        /// 发送群消息并艾特成员
+        /// 发送群消息并艾特成员_企业
         /// </summary>
         /// <param name="robotWxid">机器人ID</param>
         /// <param name="groupWxid">群ID</param>
@@ -107,6 +107,48 @@ namespace xYohttp_dotnet.Http
             };
             return await PostAsync<dynamic>(body);
         }
+
+
+        /// <summary>
+        /// 发送图片消息
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="toWxid">对象WXID（好友ID/群ID/公众号ID）</param>
+        /// <param name="path">机器人本地图片文件的绝对路径 或 网络图片urll 或 图片base64编码</param>
+        /// <returns></returns>
+        public async Task<dynamic> SendImageMsgAsync(string robotWxid, string toWxid, string path)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.SendImageMsg,
+                robot_wxid = robotWxid,
+                to_wxid = toWxid,
+                path
+            };
+            return await PostAsync<dynamic>(body);
+        }
+        /// <summary>
+        /// 发送图片消息_企业
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="toWxid">对象WXID（好友ID/群ID/公众号ID）</param>
+        /// <param name="path">机器人本地图片文件的绝对路径 或 网络图片urll 或 图片base64编码</param>
+        /// <returns></returns>
+        public async Task<dynamic> SendImageMsgEnterpriseAsync(string robotWxid, string toWxid, string path)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.SendImageMsgEnterprise,
+                robot_wxid = robotWxid,
+                to_wxid = toWxid,
+                path
+            };
+            return await PostAsync<dynamic>(body);
+        }
+
+
         /// <summary>
         /// 发起请求
         /// </summary>
