@@ -56,11 +56,31 @@ namespace xYohttp_dotnet.Common.Constant
         /// <summary>
         /// 关闭已启动的个人扫码登录窗口
         /// </summary>
-        public const string ExitWeChatLoginWin = "ExitWeChatLoginWin ";
-
-
-
-
+        public const string ExitWeChatLoginWin = "ExitWeChatLoginWin";
+        /// <summary>
+        /// 退出指定微信
+        /// </summary>
+        public const string ExitWeChat = "ExitWeChat";
+        /// <summary>
+        /// 获取群列表
+        /// </summary>
+        public const string GetGrouplist = "GetGrouplist";
+        /// <summary>
+        /// 获取好友列表
+        /// </summary>
+        public const string GetFriendlist = "GetFriendlist";
+        /// <summary>
+        /// 获取公众号列表
+        /// </summary>
+        public const string GetSubscriptionlist = "GetSubscriptionlist";
+        /// <summary>
+        /// 读取httpApi功能配置
+        /// </summary>
+        public const string GetCfg = "GetCfg";
+        /// <summary>
+        /// 写入httpApi功能配置
+        /// </summary>
+        public const string SetCfg = "SetCfg";
 
 
 

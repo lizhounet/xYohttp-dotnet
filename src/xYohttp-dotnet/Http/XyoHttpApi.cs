@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Flurl.Http;
 using xYohttp_dotnet.Common.Constant;
+using xYohttp_dotnet.Domain.Model.Dto;
 using xYohttp_dotnet.Domain.Model.Vo;
 
 namespace xYohttp_dotnet.Http
@@ -13,6 +15,8 @@ namespace xYohttp_dotnet.Http
     {
         private readonly string _url;
         private readonly string _token;
+    
+
         public XyoHttpApi(string url, string token)
         {
             _url = url;
@@ -22,14 +26,14 @@ namespace xYohttp_dotnet.Http
         /// 获取登录账号列表
         /// </summary>
         /// <returns></returns>
-        public async Task<GetRobotListVo> GetRobotListAsync()
+        public async Task<RobotListVo> GetRobotListAsync()
         {
             var body = new
             {
                 token = _token,
                 api = ApiFunctionConstant.GetRobotList
             };
-            return await PostAsync<GetRobotListVo>(body);
+            return await PostAsync<RobotListVo>(body);
         }
         /// <summary>
         /// 发送文字消息
@@ -87,7 +91,7 @@ namespace xYohttp_dotnet.Http
             return await PostAsync<dynamic>(body);
         }
         /// <summary>
-        /// 发送群消息并艾特成员
+        /// 发送群消息并艾特成员_企业
         /// </summary>
         /// <param name="robotWxid">机器人ID</param>
         /// <param name="groupWxid">群ID</param>
@@ -106,6 +110,78 @@ namespace xYohttp_dotnet.Http
                 msg
             };
             return await PostAsync<dynamic>(body);
+        }
+        /// <summary>
+        /// 发送图片消息
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="toWxid">对象WXID（好友ID/群ID/公众号ID）</param>
+        /// <param name="path">本地图片文件的绝对路径 或 网络图片url 或 图片base64编码</param>
+        /// <returns></returns>
+        public async Task<dynamic> SendImageMsgAsync(string robotWxid, string toWxid, string path)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.SendImageMsg,
+                robot_wxid = robotWxid,
+                to_wxid = toWxid,
+                path
+            };
+            return await PostAsync<dynamic>(body);
+        }
+        /// <summary>
+        /// 发送图片消息_企业
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="toWxid">对象WXID（好友ID/群ID/公众号ID）</param>
+        /// <param name="path">本地图片文件的绝对路径 或 网络图片url 或 图片base64编码</param>
+        /// <returns></returns>
+        public async Task<dynamic> SendImageMsgEnterpriseAsync(string robotWxid, string toWxid, string path)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.SendImageMsgEnterprise,
+                robot_wxid = robotWxid,
+                to_wxid = toWxid,
+                path
+            };
+            return await PostAsync<dynamic>(body);
+        }
+        /// <summary>
+        /// 获取群列表
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="isRefresh">1为重刷列表再获取，0为取缓存，默认为0</param>
+        /// <returns></returns>
+        public async Task<List<WxGroupVo>> GetGrouplistAsync(string robotWxid, int isRefresh = 0)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.GetGrouplist,
+                robot_wxid = robotWxid,
+                is_refresh = isRefresh
+            };
+            return await PostAsync<List<WxGroupVo>>(body);
+        }
+        /// <summary>
+        /// 获取好友列表
+        /// </summary>
+        /// <param name="robotWxid">机器人ID</param>
+        /// <param name="isRefresh">1为重刷列表再获取，0为取缓存，默认为0</param>
+        /// <returns></returns>
+        public async Task<List<WxFriendVo>> GetFriendlistAsync(string robotWxid, int isRefresh = 0)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.GetFriendlist,
+                robot_wxid = robotWxid,
+                is_refresh = isRefresh
+            };
+            return await PostAsync<List<WxFriendVo>>(body);
         }
         /// <summary>
         /// 启动个人微信
@@ -136,6 +212,48 @@ namespace xYohttp_dotnet.Http
         }
 
         /// <summary>
+        /// 退出指定微信
+        /// </summary>
+        /// <returns></returns>
+        public async Task<dynamic> ExitWeChatAsync(string robotWxid)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.ExitWeChat,
+                robot_wxid = robotWxid
+            };
+            return await PostAsync<dynamic>(body);
+        }
+        /// <summary>
+        /// 读取httpApi功能配置
+        /// </summary>
+        /// <returns></returns>
+        public async Task<XyoCfgInfoDto> GetCfgAsync()
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.GetCfg
+            };
+            return await PostAsync<XyoCfgInfoDto>(body);
+        }
+        /// <summary>
+        /// 写入httpApi功能配置
+        /// </summary>
+        /// <returns></returns>
+        public async Task<XyoCfgInfoDto> SetCfgAsync(XyoCfgInfoDto cfgInfoDto)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.SetCfg,
+                setJson = cfgInfoDto
+            };
+            return await PostAsync<XyoCfgInfoDto>(body);
+        }
+
+        /// <summary>
         /// 发起请求
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -147,5 +265,6 @@ namespace xYohttp_dotnet.Http
             Console.WriteLine($"{_url}返回:{httpVo}");
             return httpVo.ReturnJson;
         }
+
     }
 }

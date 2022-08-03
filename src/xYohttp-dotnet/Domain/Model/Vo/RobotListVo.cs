@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace xYohttp_dotnet.Domain.Model.Vo
 {
-    public class GetRobotListVo
+    public class RobotListVo
     {
         public int Number { set; get; }
         [JsonProperty("data")]

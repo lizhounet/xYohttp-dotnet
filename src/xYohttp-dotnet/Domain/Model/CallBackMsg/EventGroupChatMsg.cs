@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace xYohttp_dotnet.Factory
+namespace xYohttp_dotnet.Domain.Model.CallBackMsg
 {
-    public class XyoHttpApiFactory
+    public class EventGroupChatMsg
     {
     }
 }
