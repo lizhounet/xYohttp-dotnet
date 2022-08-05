@@ -5,6 +5,13 @@
     <RootNamespace>xYohttp_dotnet</RootNamespace>
     <Nullable>enable</Nullable>
     <Version>2.9.0</Version>
+    <Authors>小周黎</Authors>
+    <Description>vlw,我的框架，插件xYo_httpApi的c#sdk</Description>
+    <PackageProjectUrl>https://github.com/lizhounet/xYohttp-dotnet</PackageProjectUrl>
+    <PackageIcon>Alizhoublog.ico</PackageIcon>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +21,13 @@
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Alizhoublog.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
