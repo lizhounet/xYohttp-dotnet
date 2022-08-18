@@ -38,7 +38,7 @@ namespace xYohttp_dotnet.Domain.Model.CallBackMsg
         /// 具体发消息的群成员昵称
         /// </summary>
         [JsonProperty("from_name")]
-        public int? FromName { set; get; }
+        public string? FromName { set; get; }
         /// <summary>
         /// 消息内容
         /// </summary>

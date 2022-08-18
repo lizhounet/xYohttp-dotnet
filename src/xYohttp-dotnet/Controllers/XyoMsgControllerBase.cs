@@ -15,24 +15,29 @@ namespace xYohttp_dotnet.Controllers
     [Route("api/xyoMsg")]
     public class XyoMsgControllerBase : ControllerBase
     {
+        /// <summary>
+        /// 消息处理fun
+        /// </summary>
+        /// <param name="callBackDto"></param>
+        /// <returns></returns>
         [HttpPost("callback")]
-        public virtual XyoHttpReplyDto ProcessMessage(XyoHttpCallBackDto callBackDto)
+        public virtual async Task<XyoHttpReplyDto> ProcessMessageAsync(XyoHttpCallBackDto callBackDto)
         {
             if (callBackDto == null) return new XyoHttpReplyDto(0);
             return callBackDto.Event switch
             {
-                XyoEventConstant.Login => new XyoHttpReplyDto(OnLogin(callBackDto.Content.ToObject<LoginMsg>())),
-                XyoEventConstant.EventInvitedInGroup => new XyoHttpReplyDto(OnEventInvitedInGroup(callBackDto.Content.ToObject<EventInvitedInGroupMsg>())),
-                XyoEventConstant.EventDeviceCallback => new XyoHttpReplyDto(OnEventDeviceCallback(callBackDto.Content.ToObject<EventDeviceCallbackMsg>())),
-                XyoEventConstant.EventPrivateChat => new XyoHttpReplyDto(OnEventPrivateChat(callBackDto.Content.ToObject<EventPrivateChatMsg>())),
-                XyoEventConstant.EventDownloadFile => new XyoHttpReplyDto(OnEventDownloadFile(callBackDto.Content.ToObject<EventDownloadFileMsg>())),
-                XyoEventConstant.EventFrieneVerify => new XyoHttpReplyDto(OnEventFrieneVerify(callBackDto.Content.ToObject<EventFrieneVerifyMsg>())),
-                XyoEventConstant.EventQRcodePayment => new XyoHttpReplyDto(OnEventQRcodePayment(callBackDto.Content.ToObject<EventQRcodePaymentMsg>())),
-                XyoEventConstant.EventGroupChat => new XyoHttpReplyDto(OnEventGroupChat(callBackDto.Content.ToObject<EventGroupChatMsg>())),
-                XyoEventConstant.EventGroupMemberAdd => new XyoHttpReplyDto(OnEventGroupMemberAdd(callBackDto.Content.ToObject<EventGroupMemberAddMsg>())),
-                XyoEventConstant.EventGroupNameChange => new XyoHttpReplyDto(OnEventGroupNameChange(callBackDto.Content.ToObject<EventGroupNameChangeMsg>())),
-                XyoEventConstant.EventGroupMemberDecrease => new XyoHttpReplyDto(OnEventGroupMemberDecrease(callBackDto.Content.ToObject<EventGroupMemberDecreaseMsg>())),
-                XyoEventConstant.EventGroupEstablish => new XyoHttpReplyDto(OnEventGroupEstablish(callBackDto.Content.ToObject<EventGroupEstablishMsg>())),
+                XyoEventConstant.Login => new XyoHttpReplyDto(await OnLoginAsync(callBackDto.Content.ToObject<LoginMsg>())),
+                XyoEventConstant.EventInvitedInGroup => new XyoHttpReplyDto(await OnEventInvitedInGroupAsync(callBackDto.Content.ToObject<EventInvitedInGroupMsg>())),
+                XyoEventConstant.EventDeviceCallback => new XyoHttpReplyDto(await OnEventDeviceCallbackAsync(callBackDto.Content.ToObject<EventDeviceCallbackMsg>())),
+                XyoEventConstant.EventPrivateChat => new XyoHttpReplyDto(await OnEventPrivateChatAsync(callBackDto.Content.ToObject<EventPrivateChatMsg>())),
+                XyoEventConstant.EventDownloadFile => new XyoHttpReplyDto(await OnEventDownloadFileAsync(callBackDto.Content.ToObject<EventDownloadFileMsg>())),
+                XyoEventConstant.EventFrieneVerify => new XyoHttpReplyDto(await OnEventFrieneVerifyAsync(callBackDto.Content.ToObject<EventFrieneVerifyMsg>())),
+                XyoEventConstant.EventQRcodePayment => new XyoHttpReplyDto(await OnEventQRcodePaymentAsync(callBackDto.Content.ToObject<EventQRcodePaymentMsg>())),
+                XyoEventConstant.EventGroupChat => new XyoHttpReplyDto(await OnEventGroupChatAsync(callBackDto.Content.ToObject<EventGroupChatMsg>())),
+                XyoEventConstant.EventGroupMemberAdd => new XyoHttpReplyDto(await OnEventGroupMemberAddAsync(callBackDto.Content.ToObject<EventGroupMemberAddMsg>())),
+                XyoEventConstant.EventGroupNameChange => new XyoHttpReplyDto(await OnEventGroupNameChangeAsync(callBackDto.Content.ToObject<EventGroupNameChangeMsg>())),
+                XyoEventConstant.EventGroupMemberDecrease => new XyoHttpReplyDto(await OnEventGroupMemberDecreaseAsync(callBackDto.Content.ToObject<EventGroupMemberDecreaseMsg>())),
+                XyoEventConstant.EventGroupEstablish => new XyoHttpReplyDto(await OnEventGroupEstablishAsync(callBackDto.Content.ToObject<EventGroupEstablishMsg>())),
                 _ => new XyoHttpReplyDto(0),
             };
         }
@@ -42,9 +47,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventGroupEstablish(EventGroupEstablishMsg msg)
+        public virtual async Task<int> OnEventGroupEstablishAsync(EventGroupEstablishMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 群成员减少事件 PS: 群成员退出
@@ -52,9 +57,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventGroupMemberDecrease(EventGroupMemberDecreaseMsg msg)
+        public virtual async Task<int> OnEventGroupMemberDecreaseAsync(EventGroupMemberDecreaseMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 群名称变动事件
@@ -62,9 +67,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventGroupNameChange(EventGroupNameChangeMsg msg)
+        public virtual async Task<int> OnEventGroupNameChangeAsync(EventGroupNameChangeMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 群成员增加事件 PS: 新人进群
@@ -73,9 +78,9 @@ namespace xYohttp_dotnet.Controllers
         /// <returns></returns>
         [NonAction]
 
-        public virtual int OnEventGroupMemberAdd(EventGroupMemberAddMsg msg)
+        public virtual async Task<int> OnEventGroupMemberAddAsync(EventGroupMemberAddMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 群消息事件
@@ -83,9 +88,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventGroupChat(EventGroupChatMsg msg)
+        public virtual async Task<int> OnEventGroupChatAsync(EventGroupChatMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 面对面收款事件
@@ -93,9 +98,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventQRcodePayment(EventQRcodePaymentMsg msg)
+        public virtual async Task<int> OnEventQRcodePaymentAsync(EventQRcodePaymentMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 好友请求事件
@@ -103,9 +108,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventFrieneVerify(EventFrieneVerifyMsg msg)
+        public virtual async Task<int> OnEventFrieneVerifyAsync(EventFrieneVerifyMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 文件下载结束事件
@@ -113,9 +118,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventDownloadFile(EventDownloadFileMsg msg)
+        public virtual async Task<int> OnEventDownloadFileAsync(EventDownloadFileMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 私聊消息事件
@@ -123,9 +128,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventPrivateChat(EventPrivateChatMsg msg)
+        public virtual async Task<int> OnEventPrivateChatAsync(EventPrivateChatMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 设备回调事件
@@ -133,9 +138,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventDeviceCallback(EventDeviceCallbackMsg msg)
+        public virtual async Task<int> OnEventDeviceCallbackAsync(EventDeviceCallbackMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 新的账号登录成功/下线
@@ -143,9 +148,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnLogin(LoginMsg msg)
+        public virtual async Task<int> OnLoginAsync(LoginMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
         /// <summary>
         /// 被邀请入群事件 PS: 企业微信不传递此事件
@@ -153,9 +158,9 @@ namespace xYohttp_dotnet.Controllers
         /// <param name="msg">事件消息实体</param>
         /// <returns></returns>
         [NonAction]
-        public virtual int OnEventInvitedInGroup(EventInvitedInGroupMsg msg)
+        public virtual async Task<int> OnEventInvitedInGroupAsync(EventInvitedInGroupMsg msg)
         {
-            return 0;
+            return await Task.FromResult(0);
         }
     }
 }

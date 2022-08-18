@@ -8,7 +8,7 @@
     <Authors>小周黎</Authors>
     <Description>vlw,我的框架，插件xYo_httpApi的c#sdk</Description>
     <PackageProjectUrl>https://github.com/lizhounet/xYohttp-dotnet</PackageProjectUrl>
-    <PackageIcon>Alizhoublog.ico</PackageIcon>
+    <PackageIcon>Alizhoublog.png</PackageIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Alizhoublog.ico">
+    <None Update="Alizhoublog.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
