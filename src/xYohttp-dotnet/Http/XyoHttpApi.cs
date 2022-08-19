@@ -15,7 +15,7 @@ namespace xYohttp_dotnet.Http
     {
         private readonly string _url;
         private readonly string _token;
-    
+
 
         public XyoHttpApi(string url, string token)
         {
@@ -214,6 +214,7 @@ namespace xYohttp_dotnet.Http
         /// <summary>
         /// 退出指定微信
         /// </summary>
+        /// <param name="robotWxid">机器人id</param>
         /// <returns></returns>
         public async Task<dynamic> ExitWeChatAsync(string robotWxid)
         {
@@ -251,6 +252,27 @@ namespace xYohttp_dotnet.Http
                 setJson = cfgInfoDto
             };
             return await PostAsync<XyoCfgInfoDto>(body);
+        }
+        /// <summary>
+        /// 同意好友请求
+        /// </summary>
+        /// <param name="robotWxid">机器人id</param>
+        /// <param name="v1">收到好友验证消息中（json）的v1属性</param>
+        /// <param name="v2">收到好友验证消息中（json）的v2属性</param>
+        /// <param name="type">收到好友验证消息中（json）的type属性</param>
+        /// <returns></returns>
+        public async Task<dynamic> AgreeFriendVerifyAsync(string robotWxid, string v1, string v2, string type)
+        {
+            var body = new
+            {
+                token = _token,
+                api = ApiFunctionConstant.AgreeFriendVerify,
+                robot_wxid = robotWxid,
+                v1,
+                v2,
+                type
+            };
+            return await PostAsync<dynamic>(body);
         }
 
         /// <summary>

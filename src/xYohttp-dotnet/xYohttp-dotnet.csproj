@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>xYohttp_dotnet</RootNamespace>
     <Nullable>enable</Nullable>
-    <Version>2.9.0</Version>
+    <Version>2.9.2</Version>
     <Authors>小周黎</Authors>
     <Description>vlw,我的框架，插件xYo_httpApi的c#sdk</Description>
     <PackageProjectUrl>https://github.com/lizhounet/xYohttp-dotnet</PackageProjectUrl>
@@ -12,6 +12,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>

@@ -81,6 +81,11 @@ namespace xYohttp_dotnet.Common.Constant
         /// 写入httpApi功能配置
         /// </summary>
         public const string SetCfg = "SetCfg";
+        /// <summary>
+        /// 同意好友请求
+        /// </summary>
+        public const string AgreeFriendVerify = "AgreeFriendVerify";
+        
 
 
 
